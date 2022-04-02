@@ -1,8 +1,8 @@
-window.addEventListener("load" , function (){
+window.addEventListener("load" , function (){ 
 
-    $("#postcode_search").on("click",function(){ search_postcode(); });
+    $("#postcode_search").on("click",function(){ search_postcode(); }); 
 
-});
+}); 
 function search_postcode(){
 
     let postcode    = $("#postcode").val();
@@ -14,11 +14,11 @@ function search_postcode(){
     }
 
     //正規表現で郵便番号であるかを判定
-    postcode        = postcode.replace("-","")
+    postcode        = postcode.replace("-","");
     let result      = postcode.match(pattern);
 
     if (!result){
-        console.log("郵便番号ではない")
+        console.log("郵便番号ではない"); 
         return false;
     }
 
@@ -32,26 +32,25 @@ function search_postcode(){
         json    = JSON.parse(data);
 
         if (!json["results"]){
-            console.log("データなし");
+            console.log("データなし"); 
             return false;
         }
 
         //都道府県
-        console.log(json["results"][0]["address1"])
+        console.log(json["results"][0]["address1"]);
 
         //〇〇市
-        console.log(json["results"][0]["address2"])
+        console.log(json["results"][0]["address2"]);
 
         //〇〇
-        console.log(json["results"][0]["address3"])
+        console.log(json["results"][0]["address3"]);
 
         $("#prefecture").val(json["results"][0]["address1"]);
-        $("#city").val(json["results"][0]["address2"])
-        $("#address").val(json["results"][0]["address3"])
+        $("#city").val(json["results"][0]["address2"]);
+        $("#address").val(json["results"][0]["address3"]);
 
     }).fail( function(xhr, status, error) {
-        console.log("通信エラー")
-    }); 
-}
-
+        console.log("通信エラー"); 
+    });
+}   
 
